@@ -1,0 +1,31 @@
+AC Empréstimos & Celulares — APK de TESTE
+
+IMPORTANTE
+- Este projeto cria um aplicativo Android de teste que abre o site publicado em HTTPS.
+- Ele NÃO modifica o site do Netlify nem as tabelas do Supabase.
+- A compilação é feita no GitHub Actions, sem computador local.
+- O APK inicial é de DEBUG e serve para testes, não para publicar na Play Store.
+- Este aplicativo depende de internet e do site estar online. Não é uma versão offline nativa.
+- Não inclua senhas, chaves privadas ou credenciais de cliente neste repositório.
+
+COMO GERAR PELO CELULAR
+1. Baixe e extraia este ZIP no celular, se o gerenciador de arquivos permitir.
+2. Abra https://github.com/new no Chrome e crie um repositório novo chamado ac-android-teste. Marque-o como Private.
+3. Envie os arquivos e pastas desta pasta para o repositório, mantendo a estrutura, inclusive .github/workflows/build-apk.yml. Se o envio de pasta não funcionar no celular, use a opção de enviar arquivos do GitHub ou o GitHub Desktop não é necessário; pode ser necessário enviar arquivos em lotes.
+4. No repositório, abra Actions. Se pedir, habilite workflows. Selecione “Build AC Android test APK” e toque em “Run workflow”.
+5. Quando terminar com status verde, abra a execução e baixe o artefato “AC-Android-TESTE-APK”. O download é um ZIP; extraia e localize app-debug.apk.
+6. Abra o APK no Android e permita instalar apps dessa origem se o sistema pedir. Instale somente o arquivo gerado na sua própria execução.
+
+SE NÃO CONSEGUIR ENVIAR A PASTA .GITHUB
+O workflow precisa estar no caminho .github/workflows/build-apk.yml. Sem ele, a compilação automática não aparecerá.
+
+TESTES OBRIGATÓRIOS
+- Login e logout
+- Menu e navegação
+- Clientes, empréstimos, parcelas e pagamentos
+- Cadastro/edição de celulares e vendas
+- Verificar que dados de teste não sejam confundidos com dados reais
+- Confirmar que links externos abram no navegador
+
+SEGURANÇA
+Este APK carrega o site atual. Ele não faz cópia independente da lógica do site; atualizações publicadas no site poderão aparecer dentro do app. Faça backup e teste com dados fictícios antes de operações reais.
