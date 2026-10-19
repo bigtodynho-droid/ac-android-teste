@@ -1,0 +1,52 @@
+name: Build AC Celulares Test APK
+
+on:
+workflow_dispatch:
+push:
+paths:
+- ".github/workflows/main.yml"
+- "package.json"
+- "capacitor.config.json"
+- "www/**"
+
+permissions:
+contents: read
+
+jobs:
+build:
+runs-on: ubuntu-latest
+steps:
+- name: Baixar projeto
+uses: actions/checkout@v4
+
+  - name: Configurar Node.js
+    uses: actions/setup-node@v4
+    with:
+      node-version: 22
+
+  - name: Configurar Java
+    uses: actions/setup-java@v4
+    with:
+      distribution: temurin
+      java-version: 21
+
+  - name: Instalar dependências
+    run: npm install --no-audit --no-fund
+
+  - name: Preparar Android
+    run: |
+      npx cap add android
+      npx cap sync android
+
+  - name: Gerar APK
+    run: |
+      cd android
+      chmod +x gradlew
+      ./gradlew assembleDebug
+
+  - name: Disponibilizar APK
+    uses: actions/upload-artifact@v4
+    with:
+      name: AC-Celulares-TESTE-APK
+      path: android/app/build/outputs/apk/debug/app-debug.apk
+      if-no-files-found: error
